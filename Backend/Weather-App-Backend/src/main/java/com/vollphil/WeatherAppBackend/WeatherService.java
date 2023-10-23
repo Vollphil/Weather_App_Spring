@@ -10,5 +10,7 @@ public class WeatherService {
     public WeatherService(WeatherAPIClient apiClient) {
         this.apiClient = apiClient;
     }
-    
+    public WeatherData getWeatherForLocation(String location) {
+        return apiClient.getCurrentWeather(location);
+    }
 }
