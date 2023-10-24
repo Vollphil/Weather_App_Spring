@@ -3,7 +3,8 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import SearchWeatherAfterLocation from "./Pages/SearchWeatherAfterLocation";
-import ErrorPage from "./Pages/ErrorPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
     return (
