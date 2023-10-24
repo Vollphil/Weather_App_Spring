@@ -1,4 +1,4 @@
-package com.vollphil.WeatherAppBackend;
+package com.vollphil.WeatherAppBackend.data;
 
 public class WeatherData {
   private  Location location;
