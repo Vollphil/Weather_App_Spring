@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 const SearchWeatherAfterLocation = () => {
+    const [autoComplete,setAutoComplete] = useState("");
 
     return(
         <div>
