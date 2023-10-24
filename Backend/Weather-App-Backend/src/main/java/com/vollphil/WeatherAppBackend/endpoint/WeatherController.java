@@ -3,10 +3,7 @@ package com.vollphil.WeatherAppBackend.endpoint;
 import com.vollphil.WeatherAppBackend.data.LocationSuggestion;
 import com.vollphil.WeatherAppBackend.data.WeatherData;
 import com.vollphil.WeatherAppBackend.service.WeatherService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +16,7 @@ public class WeatherController {
     public WeatherController(WeatherService weatherService) {
         this.weatherService = weatherService;
     }
-
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/current/{location}")
     public WeatherData getCurrentWeather(@PathVariable String location){
 
@@ -27,7 +24,7 @@ public class WeatherController {
 
         return data;
     }
-
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/search/{query}")
     public List<LocationSuggestion> getCurrentAutoComplete(@PathVariable String query){
         List<LocationSuggestion> data = weatherService.getWeatherForLocationAutoComplete(query);
