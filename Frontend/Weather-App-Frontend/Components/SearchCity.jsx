@@ -1,4 +1,4 @@
-const SearchCity = async (query,setWeatherData) => {
+const SearchCity = async (query,setLocationData) => {
     try{
     const response = await fetch(`http://localhost:8080/api/weather/search/${query}`,{
         method:'GET',
@@ -8,7 +8,7 @@ if(!response.ok){
 
 }
 const data = await response.json();
-setWeatherData(data);
+setLocationData(data);
     }catch(error){
         console.error("There was a problem with the fetch operation:", error.message);
     }

@@ -10,9 +10,9 @@ const SearchWeatherAfterLocation = () => {
 
     
 
-
+    console.log(weatherData)
     return(
-        <div className="position-relative">
+        <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '100vh' }}>
             <h1>Enter a City to get the Weather Details</h1>
             <input type="text"
                    onChange={e => {
@@ -27,21 +27,28 @@ const SearchWeatherAfterLocation = () => {
                             <a className="dropdown-item" href="#" onClick={(e) => {
                                 e.preventDefault();
                                 GetWeatherDetailsFromLoaction(data.name, setWeatherData);
-                                setAutoComplete(data.name);
+                                setAutoComplete("");
                                 }}>{data.name}, {data.country}</a>
                         </li>
                     ))}
                 </ul>
             }
-            {weatherData.length > 0 &&
-            <div>
-                {weatherData.map((data,index) =>(
-                    <div key={index}>
-                        <p>{data.temp_c}</p>
-                        </div>
-                ))}
+            {(weatherData.length === undefined) &&
+            <div >
+              
+    <div>
+     <p>Temperature C : {weatherData.current.temp_c}</p>
+     <p>Temperature F : {weatherData.current.temp_f}</p>
+     <p>City : {weatherData.location.name}</p>
+     <p>Country : {weatherData.location.country}</p>
+     <p>Weather Condition : {weatherData.current.condition.text}</p>
+    </div>
+
+
+               
                 </div>
             }
+
 
 
 

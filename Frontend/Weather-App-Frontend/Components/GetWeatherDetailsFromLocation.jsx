@@ -9,6 +9,7 @@ const GetWeatherDetailsFromLoaction = async (location,setWeatherData) =>{
     }
     const data = await response.json();
     setWeatherData(data);
+    console.log(data.current);
         }catch(error){
             console.error("There was a problem with the fetch operation:", error.message);
         }
