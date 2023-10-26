@@ -22,4 +22,6 @@ public class WeatherService {
     public List<LocationSuggestion> getWeatherForLocationAutoComplete(String query){
         return apiClient.searchLocations(query);
     }
+
+
 }
