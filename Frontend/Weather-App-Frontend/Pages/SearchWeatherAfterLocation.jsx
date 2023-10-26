@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import SearchCity from '../Components/SearchCity';
 import GetWeatherDetailsFromLoaction from '../Components/GetWeatherDetailsFromLocation';
+import FavoriteCitySave from '../Components/FacoriteCitySave';
 
 const SearchWeatherAfterLocation = () => {
     const [autoComplete,setAutoComplete] = useState("");
     const [locationData,setLocationData] = useState([]);
     const [weatherData,setWeatherData] = useState([]);
+    const [favoriteCity,setFavoriteCity] = useState([]);
 
-
+    const handleCitySave = (newCity) => {
+        setFavoriteCity(prevCities => [...prevCities,newCity]);
+    }
     
 
     console.log(weatherData)
@@ -42,10 +46,23 @@ const SearchWeatherAfterLocation = () => {
      <p>City : {weatherData.location.name}</p>
      <p>Country : {weatherData.location.country}</p>
      <p>Weather Condition : {weatherData.current.condition.text}</p>
+     <button type="button"
+             onClick={() => {FavoriteCitySave(weatherData,handleCitySave)}}>Save</button>
     </div>
 
 
                
+                </div>
+            }
+
+            {favoriteCity.length > 0 &&
+            <div>
+                <h1>Your Saved Cities</h1>
+               {favoriteCity.map((index,city) =>(
+                <div key={index}>
+                    <p><a href='#' onClick={()=> console.log("test")}>{city.cityName}</a></p>
+                    </div>
+               ))}
                 </div>
             }
 
