@@ -17,24 +17,32 @@ public class WeatherController {
     public WeatherController(WeatherService weatherService) {
         this.weatherService = weatherService;
     }
+
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/current/{location}")
-    public WeatherData getCurrentWeather(@PathVariable String location){
+    public WeatherData getCurrentWeather(@PathVariable String location) {
 
         WeatherData data = weatherService.getWeatherForLocation(location);
 
         return data;
     }
+
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/search/{query}")
-    public List<LocationSuggestion> getCurrentAutoComplete(@PathVariable String query){
+    public List<LocationSuggestion> getCurrentAutoComplete(@PathVariable String query) {
         List<LocationSuggestion> data = weatherService.getWeatherForLocationAutoComplete(query);
         return data;
     }
 
     @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/favoriteCity")
-    public FavoriteCity saveFavoriteCity(@RequestBody FavoriteCity favoriteCity){
+    public FavoriteCity saveFavoriteCity(@RequestBody FavoriteCity favoriteCity) {
         return weatherService.saveFavoriteCity(favoriteCity);
+    }
+
+    @CrossOrigin(origins = "http://localhost:5173")
+    @DeleteMapping("/{id}")
+    void delete(@PathVariable Long id) {
+        weatherService.deleteCityById(id);
     }
 }

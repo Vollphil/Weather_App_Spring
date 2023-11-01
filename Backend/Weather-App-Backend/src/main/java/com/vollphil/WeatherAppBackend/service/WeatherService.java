@@ -31,5 +31,7 @@ public class WeatherService {
         return favoriteCityRepository.save(favoriteCity);
     }
 
-
+    public void deleteCityById(Long id){
+        favoriteCityRepository.deleteById(id);
+    }
 }
