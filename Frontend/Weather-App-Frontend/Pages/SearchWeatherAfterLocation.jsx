@@ -19,6 +19,7 @@ const SearchWeatherAfterLocation = () => {
         <div className="d-flex flex-column justify-content-center align-items-center" style={{ height: '100vh' }}>
             <h1>Enter a City to get the Weather Details</h1>
             <input type="text"
+                   value={autoComplete}
                    onChange={e => {
                     const newValue = e.target.value;
                     setAutoComplete(newValue);
@@ -35,7 +36,7 @@ const SearchWeatherAfterLocation = () => {
                                 }}>{data.name}, {data.country}</a>
                         </li>
                     ))}
-                </ul>
+                 </ul>
             }
             {(weatherData.length === undefined) &&
             <div >
@@ -47,7 +48,10 @@ const SearchWeatherAfterLocation = () => {
      <p>Country : {weatherData.location.country}</p>
      <p>Weather Condition : {weatherData.current.condition.text}</p>
      <button type="button"
-             onClick={() => {FavoriteCitySave(weatherData,handleCitySave)}}>Save</button>
+             onClick={(e) => {
+                e.preventDefault();
+                FavoriteCitySave(weatherData,handleCitySave);
+                }}>Save</button>
     </div>
 
 
@@ -58,9 +62,12 @@ const SearchWeatherAfterLocation = () => {
             {favoriteCity.length > 0 &&
             <div>
                 <h1>Your Saved Cities</h1>
-               {favoriteCity.map((index,city) =>(
-                <div key={index}>
-                    <p><a href='#' onClick={()=> console.log("test")}>{city.cityName}</a></p>
+               {favoriteCity.map((city) =>(
+                <div key={city._id}>
+                    <p><a href='#' onClick={(e)=> {
+                        e.preventDefault();
+                        GetWeatherDetailsFromLoaction(city.cityName, setWeatherData)}}>{city.cityName}</a></p>
+                        <button type="button">Delete</button>
                     </div>
                ))}
                 </div>
