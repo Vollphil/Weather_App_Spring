@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SearchCity from '../Components/SearchCity';
 import GetWeatherDetailsFromLoaction from '../Components/GetWeatherDetailsFromLocation';
 import FavoriteCitySave from '../Components/FacoriteCitySave';
+import DeleteCityFetch from '../Components/DeleteCityFetch';
 
 const SearchWeatherAfterLocation = () => {
     const [autoComplete,setAutoComplete] = useState("");
@@ -63,11 +64,13 @@ const SearchWeatherAfterLocation = () => {
             <div>
                 <h1>Your Saved Cities</h1>
                {favoriteCity.map((city) =>(
-                <div key={city._id}>
+                <div key={city.id}>
                     <p><a href='#' onClick={(e)=> {
                         e.preventDefault();
                         GetWeatherDetailsFromLoaction(city.cityName, setWeatherData)}}>{city.cityName}</a></p>
-                        <button type="button">Delete</button>
+                        <button type="button"
+                                onClick={() =>
+                                DeleteCityFetch(city.id,setFavoriteCity)}>Delete</button>
                     </div>
                ))}
                 </div>
