@@ -17,9 +17,9 @@ public class WeatherAPIClient {
     private final String apiKey;
     private final RestTemplate restTemplate;
 
-    public WeatherAPIClient(@Value("${weatherapi.key}")String apiKey) {
+    public WeatherAPIClient(@Value("${weatherapi.key}")String apiKey, RestTemplate restTemplate) {
         this.apiKey = apiKey;
-        this.restTemplate = new RestTemplate();
+        this.restTemplate = restTemplate;
     }
 
     public WeatherData getCurrentWeather(String location) {
